@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import {Nunito} from "next/font/google"; 
-
+import { Nunito } from "next/font/google";
+import Navbar from "./components/Navbar/Navbar";
+import ClientOnly from "./components/ClientOnly";
+import Modals from "./components/Modals/Modals";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -16,7 +18,7 @@ const geistMono = localFont({
 });
 
 const font = Nunito({
-  subsets : ['latin'],
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -32,8 +34,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={` ${geistSans.variable} ${geistMono.variable} antialiased ${font.className}`}
       >
+        <ClientOnly>
+          <Modals title="Hello World" isOpen />
+          <Navbar />
+        </ClientOnly>
+
         {children}
       </body>
     </html>
