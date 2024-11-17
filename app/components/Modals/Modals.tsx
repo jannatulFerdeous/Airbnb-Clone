@@ -1,7 +1,8 @@
-"use client";
+'use client';
 
-import React, { useCallback, useEffect, useState } from "react";
-import { IoMdClose } from "react-icons/io";
+import React, { useCallback, useEffect, useState } from 'react';
+import { IoMdClose } from 'react-icons/io';
+import Button from '../Button/Button';
 
 interface ModalsProps {
   isOpen?: boolean;
@@ -13,7 +14,7 @@ interface ModalsProps {
   actionLabel: string;
   disabled?: boolean;
   secondaryAction?: () => void;
-  secondaryLabel?: string;
+  secondaryActionLabel?: string;
 }
 
 const Modals: React.FC<ModalsProps> = ({
@@ -26,7 +27,7 @@ const Modals: React.FC<ModalsProps> = ({
   actionLabel,
   disabled,
   secondaryAction,
-  secondaryLabel,
+  secondaryActionLabel,
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
 
@@ -90,7 +91,11 @@ const Modals: React.FC<ModalsProps> = ({
           className={`
             translate
             duration-300
-            ${showModal ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}
+            ${
+              showModal
+                ? 'translate-y-0 opacity-100'
+                : 'translate-y-full opacity-0'
+            }
             h-full
           `}
         >
@@ -124,7 +129,6 @@ const Modals: React.FC<ModalsProps> = ({
                 border-b-[1px]
               "
             >
-              
               <button
                 onClick={handleClose}
                 className="
@@ -136,19 +140,36 @@ const Modals: React.FC<ModalsProps> = ({
                 left-9 
                  "
               >
-                <IoMdClose size={18}/>
+                <IoMdClose size={18} />
               </button>
-              <div className="text-lg font-semibold">
-                  {title}
-              </div>
+              <div className="text-lg font-semibold">{title}</div>
             </div>
             {/* Body */}
-           <div className="relative p-6 flex-auto">
-            {body}
-            </div>
+            <div className="relative p-6 flex-auto">{body}</div>
             {/* Footer */}
-            <div>   
-                        
+            <div className="flex flex-col gap-2 p-6">
+              <div
+                className="
+              flex 
+              flex-row
+              items-center
+              gap-4
+              w-full"
+              >
+                {secondaryAction && secondaryActionLabel && (
+                  <Button
+                    outline
+                    disabled={disabled}
+                    label={secondaryActionLabel}
+                    onClick={handleSecondaryAction}
+                  />
+                )}
+                <Button
+                  disabled={disabled}
+                  label={actionLabel}
+                  onClick={handleSubmit}
+                />
+              </div>
             </div>
           </div>
         </div>
