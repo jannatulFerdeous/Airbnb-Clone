@@ -1,14 +1,16 @@
-"use client";
-import React, { useCallback, useState } from "react";
-import { AiOutlineMenu } from "react-icons/ai";
-import Avatar from "../Avatar";
-import MenuItem from "./MenuItem";
+'use client';
+import React, { useCallback, useState } from 'react';
+import { AiOutlineMenu } from 'react-icons/ai';
+import Avatar from '../Avatar';
+import MenuItem from './MenuItem';
+import useRegisterModal from '@/app/hooks/useRegisterModal';
 
 const UserMenu = () => {
+  const registerModel = useRegisterModal();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
-    setIsOpen((value) => !value);
+    setIsOpen(value => !value);
   }, []);
 
   return (
@@ -65,7 +67,7 @@ const UserMenu = () => {
               <MenuItem onClick={() => {}} label="LogIn" />
             </>
             <>
-              <MenuItem onClick={() => {}} label="Sign Up" />
+              <MenuItem onClick={registerModel.onOpen} label="Sign Up" />
             </>
           </div>
         </div>
