@@ -6,6 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 import ClientOnly from './components/ClientOnly';
 
 import RegisterModal from './components/Modals/RegisterModal';
+import ToasterProvider from './providers/ToasterProvider';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -39,6 +40,7 @@ export default function RootLayout({
       >
         <ClientOnly>
           {/* <Modals actionLabel="Submit" title="Hello World" isOpen /> */}
+          <ToasterProvider />
           <RegisterModal />
           <Navbar />
         </ClientOnly>

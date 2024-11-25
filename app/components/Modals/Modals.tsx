@@ -112,6 +112,7 @@ const Modals: React.FC<ModalsProps> = ({
               flex
               flex-col
               w-full
+              
               bg-white
               outline-none
               focus:outline-none
@@ -170,6 +171,7 @@ const Modals: React.FC<ModalsProps> = ({
                   onClick={handleSubmit}
                 />
               </div>
+              {footer}
             </div>
           </div>
         </div>
