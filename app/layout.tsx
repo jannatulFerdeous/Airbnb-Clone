@@ -7,6 +7,8 @@ import ClientOnly from './components/ClientOnly';
 
 import RegisterModal from './components/Modals/RegisterModal';
 import ToasterProvider from './providers/ToasterProvider';
+import LoginModal from './components/Modals/LoginModal';
+import getCurrentUser from './actions/getCurrentUser';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -28,11 +30,13 @@ export const metadata: Metadata = {
   description: 'Airbnb clone project',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const currentUser = await getCurrentUser();
+
   return (
     <html lang="en">
       <body
@@ -42,7 +46,8 @@ export default function RootLayout({
           {/* <Modals actionLabel="Submit" title="Hello World" isOpen /> */}
           <ToasterProvider />
           <RegisterModal />
-          <Navbar />
+          <LoginModal />
+          <Navbar currentUser={currentUser} />
         </ClientOnly>
 
         {children}
