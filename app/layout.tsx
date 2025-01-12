@@ -8,6 +8,8 @@ import ClientOnly from './components/ClientOnly';
 import RegisterModal from './components/Modals/RegisterModal';
 import ToasterProvider from './providers/ToasterProvider';
 import LoginModal from './components/Modals/LoginModal';
+import RentModal from './components/Modals/RentModal';
+
 import getCurrentUser from './actions/getCurrentUser';
 
 const geistSans = localFont({
@@ -45,6 +47,7 @@ export default async function RootLayout({
         <ClientOnly>
           {/* <Modals actionLabel="Submit" title="Hello World" isOpen /> */}
           <ToasterProvider />
+          <RentModal />
           <RegisterModal />
           <LoginModal />
           <Navbar currentUser={currentUser} />
