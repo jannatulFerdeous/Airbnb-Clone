@@ -15,9 +15,11 @@ import Button from '../Button/Button';
 import { FaGoogle } from 'react-icons/fa';
 import { signIn } from 'next-auth/react';
 import { sign } from 'crypto';
+import useLoginModel from '@/app/hooks/useLoginModel';
 
 const RegisterModal = () => {
   const registerModel = useRegisterModal();
+  const loginModal = useLoginModel();
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -36,8 +38,6 @@ const RegisterModal = () => {
     axios
 
       .post('/api/register', data)
-
-      .post('/api/register', data)
       .then(() => {
         registerModel.onClose();
       })
@@ -49,7 +49,10 @@ const RegisterModal = () => {
         setIsLoading(false);
       });
   };
-
+  const toggle = useCallback(() => {
+    registerModel.onClose();
+    loginModal.onOpen();
+  }, [registerModel, loginModal]);
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome to Airbnb" subtitle="Create an account!" />
@@ -94,11 +97,7 @@ const RegisterModal = () => {
       <Button
         outline
         label="Continue with github"
-        label="Continue with github"
         icon={AiFillGithub}
-        onClick={() => {
-          signIn('github');
-        }}
         onClick={() => {
           signIn('github');
         }}
@@ -113,7 +112,7 @@ const RegisterModal = () => {
         <div className="justify-center flex flex-row items-center gap-2 ">
           <div>Already have an account? </div>
           <div
-            onClick={registerModel.onClose}
+            onClick={toggle}
             className="
             text-neutral-800
             cursor-pointer
