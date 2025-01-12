@@ -5,6 +5,7 @@ import { TbBeach } from 'react-icons/tb';
 import { GiWindmill } from 'react-icons/gi';
 import { MdOutlineVilla } from 'react-icons/md';
 import CategoryBox from './CategoryBox';
+import { useParams, useSearchParams } from 'next/navigation';
 
 export const catotegories = [
   {
@@ -24,6 +25,16 @@ export const catotegories = [
   },
 ];
 const Categories = () => {
+  const params = useSearchParams();
+  const category = params?.get('category');
+  const pathname = useParams();
+
+  const isMainPage = pathname === '/';
+
+  if (!isMainPage) {
+    return null;
+  }
+
   return (
     <Container>
       <div
@@ -40,7 +51,7 @@ const Categories = () => {
             key={item.label}
             label={item.label}
             icon={item.icon}
-            description={item.description}
+            selected={category === item.label}
           />
         ))}
       </div>
