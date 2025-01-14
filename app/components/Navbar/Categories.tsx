@@ -19,7 +19,7 @@ import { FaSkiing } from 'react-icons/fa';
 import { BsSnow } from 'react-icons/bs';
 import { IoDiamond } from 'react-icons/io5';
 
-export const catotegories = [
+export const categoriesData = [
   {
     label: 'Beach',
     icon: TbBeach,
@@ -118,7 +118,7 @@ const Categories = () => {
        justify-between
        overflow-x-auto"
       >
-        {catotegories.map(item => (
+        {categoriesData.map(item => (
           <CategoryBox
             key={item.label}
             label={item.label}
