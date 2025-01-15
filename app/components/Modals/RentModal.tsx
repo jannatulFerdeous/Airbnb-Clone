@@ -45,7 +45,7 @@ const RentModal = () => {
   });
 
   const category = watch('category');
-
+  const location = watch('location');
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
       shouldValidate: true,
@@ -112,7 +112,10 @@ const RentModal = () => {
           title="Where is your place located?"
           subtitle="Help guests find you!"
         />
-        <CountrySelect />
+        <CountrySelect
+          value={location}
+          onChange={value => setCustomValue('location', value)}
+        />
       </div>
     );
   }
