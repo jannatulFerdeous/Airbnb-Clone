@@ -6,7 +6,7 @@ import Select from 'react-select';
 export type CountrySelectValue = {
   flag: string;
   label: string;
-  latlag: number[];
+  latlng: number[];
   region: string;
   value: string;
 };
